@@ -1,5 +1,7 @@
 # The Complete React Developer Course (with Hooks and Redux)
 
+JSX - Javascript XML
+
 
 ### Tools
 
@@ -28,5 +30,9 @@ Run it using, where there is a file *index.html*
 live-server public
 ```
 
-## Indecision App
+### BABEL 
+
+https://babeljs.io/
+
+## Installing React from script tag
 

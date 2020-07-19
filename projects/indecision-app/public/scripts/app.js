@@ -1,86 +1,81 @@
 'use strict';
 
-console.log('App.js is running');
-// $ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch 
+// babel src/playground/es6-arrow-function-2.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+// argument object - no longer bound with arrow function
 
 
-// JSX - Javascript XML
-
-var app = {
-  title: 'Indecision App',
-  subtitle: 'Put your life in the hands of a computer',
-  options: ['One', 'Two']
+var add = function add(a, b) {
+  console.log(arguments);
+  return a + b;
 };
+console.log(add(55, 1, 1001));
 
-var template = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    'p',
-    null,
-    app.subtitle
-  ),
-  React.createElement(
-    'p',
-    null,
-    app.options && app.options.length > 0 ? 'Here are your options' : 'No options'
-  ),
-  React.createElement(
-    'ol',
-    null,
-    React.createElement(
-      'li',
-      null,
-      'Item one'
-    ),
-    React.createElement(
-      'li',
-      null,
-      'Item two'
-    )
-  )
-);
+var add2 = function add2(a, b) {
+  // console.log(arguments)
+  return a + b;
+};
+console.log(add2(55, 10, 1001));
+
+// this keyword - no longer bound
 
 var user = {
-  name: 'Rodrigo',
-  age: 38,
-  location: 'São Paulo'
-};
+  name: 'Andrew',
+  cities: ['Philadelphia', 'New York', 'Dublin'],
+  printPlacesLived: function printPlacesLived() {
+    var that = this; // to use inside the forEach
 
-var getLocation = function getLocation(location) {
-  if (location) {
-    return React.createElement(
-      'p',
-      null,
-      'Location: ',
-      location
-    );
+    this.cities.forEach(function (city) {
+      console.log(that.name + ' has lived in ' + city);
+    });
   }
-  // return location ? <p>Location: {location}</p> : ''
 };
+user.printPlacesLived();
 
-var templateTwo = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    user.name ? user.name : 'Anonymous'
-  ),
-  user.age && user.age >= 18 && React.createElement(
-    'p',
-    null,
-    'Age: ',
-    user.age
-  ),
-  getLocation(user.location)
-);
+console.log('\n\n');
 
-var appRoot = document.getElementById('app');
+var user2 = {
+  name: 'Andrew',
+  cities: ['Philadelphia', 'New York', 'Dublin'],
+  printPlacesLived: function printPlacesLived() {
+    var _this = this;
 
-ReactDOM.render(template, appRoot);
+    // same as printPlacesLived : function() {...}
+    this.cities.forEach(function (city) {
+      console.log(_this.name + ' has lived in ' + city);
+    });
+  }
+};
+user2.printPlacesLived();
+
+// if is necessary to use 'this' use ES5 function, otherwise use ES6 arrow function
+
+console.log('\n\n');
+
+var user3 = {
+  name: 'Andrew',
+  cities: ['Philadelphia', 'New York', 'Dublin'],
+  printPlacesLived: function printPlacesLived() {
+    var _this2 = this;
+
+    return this.cities.map(function (city) {
+      return _this2.name + ' has lives in ' + city;
+    });
+  }
+};
+console.log(user3.printPlacesLived());
+
+// Challenge area
+
+var multiplier = {
+  numbers: [1, 2, 3],
+  multiplyBy: 2,
+  multiply: function multiply() {
+    var _this3 = this;
+
+    return this.numbers.map(function (number) {
+      return number * _this3.multiplyBy;
+    });
+  }
+};
+console.log(multiplier.multiply());

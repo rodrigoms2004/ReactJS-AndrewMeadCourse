@@ -1,5 +1,5 @@
 console.log('App.js is running');
-// live-server public
+// $ live-server public
 // $ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch 
 
 
@@ -23,27 +23,30 @@ const template = (
   </div>
 );
 
-const user = {
-  name : 'Rodrigo',
-  age : 38,
-  location : 'São Paulo'
+let count = 0;
+const addOne = () => {
+  console.log('addOne')
 };
 
-const getLocation = location => {
-  if (location) {
-    return <p>Location: {location}</p>  
-  }
-  // return location ? <p>Location: {location}</p> : ''
-}
+const minusOne = () => {
+  console.log('minusOne')
+};
+
+const reset = () => {
+  console.log('reset')
+};
 
 const templateTwo = (
   <div>
-    <h1>{user.name ? user.name : 'Anonymous'}</h1>
-    {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-    {getLocation(user.location)}
+    <h1>Count: {count}</h1>
+    <button onClick={addOne}>+1</button>
+    <button onClick={minusOne}>-1</button>
+    <button onClick={reset}>reset</button>
   </div>
 );
 
+
+// console.log(templateTwo)
 const appRoot = document.getElementById('app')
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);

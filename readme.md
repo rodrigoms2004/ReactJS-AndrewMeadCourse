@@ -104,3 +104,23 @@ $ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
 
 ## Installing React from script tag
 
+## Events and Attributes
+
+
+### DOM ELEMENTS
+
+
+https://reactjs.org/docs/dom-elements.html
+
+
+in JSX there instead use 'class' use 'className' attribute
+
+Original HTML
+```
+<button id="my-id" class="button">+1</button>
+```
+
+JSX
+```
+<button id="my-id" className="button">+1</button>
+```

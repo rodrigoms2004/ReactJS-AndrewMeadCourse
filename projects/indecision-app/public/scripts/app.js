@@ -7,86 +7,73 @@ console.log('App.js is running');
 
 // JSX - Javascript XML
 
-var app = {
-  title: 'Indecision App',
-  subtitle: 'Put your life in the hands of a computer',
-  options: ['One', 'Two']
-};
+// const app = {
+//   title: 'Indecision App',
+//   subtitle: 'Put your life in the hands of a computer',
+//   options: ['One', 'Two']
+// }
 
-var template = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    'p',
-    null,
-    app.subtitle
-  ),
-  React.createElement(
-    'p',
-    null,
-    app.options && app.options.length > 0 ? 'Here are your options' : 'No options'
-  ),
-  React.createElement(
-    'ol',
-    null,
-    React.createElement(
-      'li',
-      null,
-      'Item one'
-    ),
-    React.createElement(
-      'li',
-      null,
-      'Item two'
-    )
-  )
-);
+// const template = (
+//   <div>
+//     <h1>{app.title}</h1> 
+//     {(app.subtitle && <p>{app.subtitle}</p>)}
+//     <p>{(app.options && app.options.length > 0 ? 'Here are your options' : 'No options')}</p>
+//     <ol>
+//       <li>Item one</li>
+//       <li>Item two</li>
+//     </ol>
+//   </div>
+// );
 
 var count = 0;
 var addOne = function addOne() {
-  console.log('addOne');
+  count++;
+  // console.log('addOne', count)
+  renderCounterApp();
 };
 
 var minusOne = function minusOne() {
-  console.log('minusOne');
+  count--;
+  renderCounterApp();
+  // console.log('minusOne')
 };
 
 var reset = function reset() {
-  console.log('reset');
+  count = 0;
+  renderCounterApp();
+  // console.log('reset')
 };
-
-var templateTwo = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    'Count: ',
-    count
-  ),
-  React.createElement(
-    'button',
-    { onClick: addOne },
-    '+1'
-  ),
-  React.createElement(
-    'button',
-    { onClick: minusOne },
-    '-1'
-  ),
-  React.createElement(
-    'button',
-    { onClick: reset },
-    'reset'
-  )
-);
 
 // console.log(templateTwo)
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+var renderCounterApp = function renderCounterApp() {
+  var templateTwo = React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h1',
+      null,
+      'Count: ',
+      count
+    ),
+    React.createElement(
+      'button',
+      { onClick: addOne },
+      '+1'
+    ),
+    React.createElement(
+      'button',
+      { onClick: minusOne },
+      '-1'
+    ),
+    React.createElement(
+      'button',
+      { onClick: reset },
+      'reset'
+    )
+  );
+  ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();

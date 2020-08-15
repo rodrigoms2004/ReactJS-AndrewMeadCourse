@@ -9,27 +9,33 @@
 
 const app = {
   title: 'Visibility Toggle',
-  isVisible: false,
+  visibility: false,
   details: 'Hey. These are some details you can now see!'
 }
 
-const onDetails = () => {
-  app.isVisible =  app.isVisible ? false : true;
+const toggleVisibility = () => {
+  app.visibility =  !app.visibility
   render();
 }
 
 const appRoot = document.getElementById("app")
 
 const render = () => {
-  const template = (
+  const jsx = (
     <div>
       <h1>{app.title}</h1>
-      <button onClick={onDetails}>{app.isVisible ? 'Hide details' : 'Show details'}</button>
-      <p hidden={!app.isVisible}>{app.details}</p>
+      <button onClick={toggleVisibility}>
+        {app.visibility ? 'Hide details' : 'Show details'}
+      </button>
+      {app.visibility && (
+        <div>
+          <p>{app.details}</p>
+        </div>
+      )}
     </div>
   )
 
-  ReactDOM.render(template, appRoot)
+  ReactDOM.render(jsx, appRoot)
 }
 
 render()

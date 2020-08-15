@@ -11,19 +11,19 @@
 
 var app = {
   title: 'Visibility Toggle',
-  isVisible: false,
+  visibility: false,
   details: 'Hey. These are some details you can now see!'
 };
 
-var onDetails = function onDetails() {
-  app.isVisible = app.isVisible ? false : true;
+var toggleVisibility = function toggleVisibility() {
+  app.visibility = !app.visibility;
   render();
 };
 
 var appRoot = document.getElementById("app");
 
 var render = function render() {
-  var template = React.createElement(
+  var jsx = React.createElement(
     'div',
     null,
     React.createElement(
@@ -33,17 +33,21 @@ var render = function render() {
     ),
     React.createElement(
       'button',
-      { onClick: onDetails },
-      app.isVisible ? 'Hide details' : 'Show details'
+      { onClick: toggleVisibility },
+      app.visibility ? 'Hide details' : 'Show details'
     ),
-    React.createElement(
-      'p',
-      { hidden: !app.isVisible },
-      app.details
+    app.visibility && React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'p',
+        null,
+        app.details
+      )
     )
   );
 
-  ReactDOM.render(template, appRoot);
+  ReactDOM.render(jsx, appRoot);
 };
 
 render();

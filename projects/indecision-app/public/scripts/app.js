@@ -1,79 +1,49 @@
 'use strict';
 
-console.log('App.js is running');
 // $ live-server public
-// $ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch 
+// babel src/playground/build-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch
 
+// Visibility Toggle
 
-// JSX - Javascript XML
+// Show details / Hide details
 
-// const app = {
-//   title: 'Indecision App',
-//   subtitle: 'Put your life in the hands of a computer',
-//   options: ['One', 'Two']
-// }
+// Hey. These are some details you can now see!
 
-// const template = (
-//   <div>
-//     <h1>{app.title}</h1> 
-//     {(app.subtitle && <p>{app.subtitle}</p>)}
-//     <p>{(app.options && app.options.length > 0 ? 'Here are your options' : 'No options')}</p>
-//     <ol>
-//       <li>Item one</li>
-//       <li>Item two</li>
-//     </ol>
-//   </div>
-// );
-
-var count = 0;
-var addOne = function addOne() {
-  count++;
-  // console.log('addOne', count)
-  renderCounterApp();
+var app = {
+  title: 'Visibility Toggle',
+  isVisible: false,
+  details: 'Hey. These are some details you can now see!'
 };
 
-var minusOne = function minusOne() {
-  count--;
-  renderCounterApp();
-  // console.log('minusOne')
+var onDetails = function onDetails() {
+  app.isVisible = app.isVisible ? false : true;
+  render();
 };
 
-var reset = function reset() {
-  count = 0;
-  renderCounterApp();
-  // console.log('reset')
-};
+var appRoot = document.getElementById("app");
 
-// console.log(templateTwo)
-var appRoot = document.getElementById('app');
-
-var renderCounterApp = function renderCounterApp() {
-  var templateTwo = React.createElement(
+var render = function render() {
+  var template = React.createElement(
     'div',
     null,
     React.createElement(
       'h1',
       null,
-      'Count: ',
-      count
+      app.title
     ),
     React.createElement(
       'button',
-      { onClick: addOne },
-      '+1'
+      { onClick: onDetails },
+      app.isVisible ? 'Hide details' : 'Show details'
     ),
     React.createElement(
-      'button',
-      { onClick: minusOne },
-      '-1'
-    ),
-    React.createElement(
-      'button',
-      { onClick: reset },
-      'reset'
+      'p',
+      { hidden: !app.isVisible },
+      app.details
     )
   );
-  ReactDOM.render(templateTwo, appRoot);
+
+  ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+render();

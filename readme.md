@@ -135,3 +135,23 @@ https://reactjs.org/docs/events.html
 
 
 ## Section 4 React Components
+
+### Props vs State
+
+<MyComponent />
+
+#### Props
+
+* An object
+* Can be used when rendering
+* Changes (from above) cause re-renders
+* Comes from above
+* Can't be changed by component itself
+
+#### State
+
+* An object
+* Can be used when rendering
+* Changes cause re-renders
+* Defined in component itself
+* Can be changed by component itself

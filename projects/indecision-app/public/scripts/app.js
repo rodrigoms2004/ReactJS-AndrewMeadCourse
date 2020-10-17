@@ -32,17 +32,34 @@ var IndecisionApp = function (_React$Component) {
   }
 
   _createClass(IndecisionApp, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      console.log('Fetching data');
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      console.log('saving data');
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      console.log('componentWillUnmount');
+      // To test, put it in Chrome console
+      // ReactDOM.render(React.createElement('p'), document.getElementById('app'));
+    }
+  }, {
     key: 'handleDeleteOptions',
     value: function handleDeleteOptions() {
+      this.setState(function () {
+        return { options: [] };
+      });
+
       // this.setState(() => {
       //   return {
       //     options: []
       //   }
       // })
-
-      this.setState(function () {
-        return { options: [] };
-      });
     }
   }, {
     key: 'handleDeleteOption',

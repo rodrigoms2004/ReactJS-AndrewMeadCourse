@@ -155,3 +155,23 @@ https://reactjs.org/docs/events.html
 * Changes cause re-renders
 * Defined in component itself
 * Can be changed by component itself
+
+## Section 5
+
+### Life cycle 
+
+https://reactjs.org/docs/react-component.html
+
+```
+  componentDidMount() {
+    console.log('Fetching data')
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('saving data')
+  }
+  componentWillUnmount() {
+    console.log('componentWillUnmount')
+    // To test, put it in Chrome console
+    // ReactDOM.render(React.createElement('p'), document.getElementById('app'));
+  }
+```

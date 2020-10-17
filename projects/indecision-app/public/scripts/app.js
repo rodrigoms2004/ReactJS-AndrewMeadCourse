@@ -34,12 +34,27 @@ var IndecisionApp = function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      console.log('Fetching data');
+      try {
+        var json = localStorage.getItem('options');
+        var options = JSON.parse(json);
+
+        if (options) {
+          this.setState(function () {
+            return { options: options };
+          });
+        }
+      } catch (e) {
+        // Do nothing at all
+      }
     }
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
-      console.log('saving data');
+
+      if (prevState.options.length !== this.state.options.length) {
+        var json = JSON.stringify(this.state.options);
+        localStorage.setItem('options', json);
+      }
     }
   }, {
     key: 'componentWillUnmount',
@@ -54,12 +69,6 @@ var IndecisionApp = function (_React$Component) {
       this.setState(function () {
         return { options: [] };
       });
-
-      // this.setState(() => {
-      //   return {
-      //     options: []
-      //   }
-      // })
     }
   }, {
     key: 'handleDeleteOption',
@@ -87,12 +96,6 @@ var IndecisionApp = function (_React$Component) {
       } else if (this.state.options.indexOf(option) > -1) {
         return 'This option already exists';
       }
-
-      // this.setState(prevState => {
-      //   return {
-      //     options: prevState.options.concat(option)
-      //   }
-      // })
 
       this.setState(function (prevState) {
         return { options: prevState.options.concat(option) };
@@ -172,6 +175,11 @@ var Options = function Options(props) {
       { onClick: props.handleDeleteOptions },
       'Remove All'
     ),
+    props.options.length === 0 && React.createElement(
+      'p',
+      null,
+      'Please add an option to get started!'
+    ),
     props.options.map(function (option, index) {
       return React.createElement(Option, {
         key: index,
@@ -223,16 +231,13 @@ var AddOption = function (_React$Component2) {
       var error = this.props.handleAddOption(option);
       e.target.elements.option.value = '';
 
-      // this.setState(() => {
-      //   return {
-      //     // error: error
-      //     error
-      //   }
-      // })
-
       this.setState(function () {
         return { error: error };
       });
+
+      if (!error) {
+        e.target.elements.option.value = '';
+      }
     }
   }, {
     key: 'render',

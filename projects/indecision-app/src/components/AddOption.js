@@ -10,7 +10,7 @@ export default class AddOption extends Component {
   }
   handleAddOption(e) {
     e.preventDefault()  // avoid page refresh
-
+    
     const option = e.target.elements.option.value.trim()
     const error = this.props.handleAddOption(option)
     e.target.elements.option.value = '';

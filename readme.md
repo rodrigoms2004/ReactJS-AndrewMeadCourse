@@ -353,3 +353,24 @@ Create file for babel *projects/indecision-app/.babelrc*
   ]
 }
 ```
+
+### Source Maps with Webpack
+
+https://webpack.js.org/configuration/devtool/
+
+In file *projects/indecision-app/webpack.config.js*
+
+```
+const path = require('path') // https://nodejs.org/api/path.html#path_path_join_paths
+
+
+module.exports = {
+...
+  module: {
+...
+  },
+  devtool: 'cheap-module-source-map'
+}
+```
+
+restart webpack

@@ -374,3 +374,46 @@ module.exports = {
 ```
 
 restart webpack
+
+
+### Webpack Dev Server
+
+https://webpack.js.org/configuration/dev-server/
+
+
+Install it
+```
+yarn add webpack-dev-server@2.5.1
+```
+
+In file *projects/indecision-app/webpack.config.js*
+```
+const path = require('path') // https://nodejs.org/api/path.html#path_path_join_paths
+
+
+module.exports = {
+  entry: './src/app.js',
+
+  output: {
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/
+      }
+    ]
+  },
+  devtool: 'cheap-module-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, 'public')
+  }
+}
+```
+You can remove bundle.js, run *yarn run build* for production
+
+### ES6 class properties
+

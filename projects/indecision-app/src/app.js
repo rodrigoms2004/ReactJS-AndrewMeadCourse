@@ -1,16 +1,11 @@
 // yarn run serve
 // yarn run build
 
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-// import './utils'
-// import substract, { square, add } from './utils'
 
-// console.log('app.js is running')
-// console.log(square(4))
-// console.log(add(100, 23))
-// console.log(substract(100, 80))
+// const template = React.createElement('p', {}, 'testing 123')
+const template = <p>THIS IS JSX FROM WEBPACK</p>
 
-import isSeniorCitizen, {isAdult, canDrink} from './person'
-console.log(isAdult(16))
-console.log(canDrink(25))
-console.log(isSeniorCitizen(64))
+ReactDOM.render(template, document.getElementById('app'))

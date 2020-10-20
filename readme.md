@@ -306,3 +306,50 @@ In file *projects/indecision-app/public/index.html*
 
 </html> 
 ```
+
+### Install React
+
+```
+yarn add react@16.0.0 react-dom@16.0.0
+```
+
+### Setting up Babel with Webpack
+
+```
+yarn add babel-core@6.25.0 babel-loader@7.1.1
+```
+
+In file *projects/indecision-app/webpack.config.js*
+
+```
+const path = require('path') // https://nodejs.org/api/path.html#path_path_join_paths
+
+
+module.exports = {
+  entry: './src/app.js',
+
+  output: {
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/
+      }
+    ]
+  }
+}
+```
+
+Create file for babel *projects/indecision-app/.babelrc*
+```
+{
+  "presets": [
+    "env",
+    "react"
+  ]
+}
+```

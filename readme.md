@@ -175,3 +175,134 @@ https://reactjs.org/docs/react-component.html
     // ReactDOM.render(React.createElement('p'), document.getElementById('app'));
   }
 ```
+
+## Section 6 - Webpack
+
+* Grab the add function from the add.js file in the utils folder
+* Grab React from react npm module
+
+
+```
+public/
+  index.html
+  bundle.js
+
+src/
+  app.js
+  utils.js
+
+node_modules/
+  react.js
+  react-dom.js
+```
+
+
+### Removing Babel and Live-server global
+
+```
+npm -g remove babel-cli live-server
+
+or
+
+npm -g uninstall babel-cli live-server
+
+or
+
+yarn global babel-cli live-server
+```
+
+### Using Babel and Live server locally
+
+```
+yarn add live-server babel-cli@6.24.1
+```
+
+In file *projects/indecision-app/package.json*
+
+```
+{
+  "name": "indecision-app",
+...
+  "scripts": {
+    "serve": "live-server public/",
+    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+  },
+  "dependencies": {
+...
+```
+
+
+Run scripts
+
+```
+yarn run serve
+
+yarn run build-babel
+```
+
+### Install Webpack
+
+https://webpack.js.org/
+
+```
+yarn add webpack@3.1.0
+```
+
+https://webpack.js.org/configuration/
+
+https://nodejs.org/api/path.html#path_path_join_paths
+
+
+file *projects/indecision-app/webpack.config.js*
+
+```
+const path = require('path')
+
+module.exports = {
+  entry: './src/app.js',
+
+  output: {
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js'
+  }
+}
+```
+
+Delete *projects/indecision-app/public/scripts/app.js*
+
+In file *projects/indecision-app/package.json*
+
+```
+{
+  "name": "indecision-app",
+...
+  "scripts": {
+    "serve": "live-server public/",
+    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "build": "webpack --watch"
+  },
+  "dependencies": {
+...
+```
+
+Run it
+```
+yarn run build
+```
+
+In file *projects/indecision-app/public/index.html*
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Indecision App</title>
+  </head>
+  
+  <body>
+    <div id="app"></div>
+    <script src="/bundle.js"></script>
+  </body>
+
+</html> 
+```

@@ -474,3 +474,9 @@ const newSyntax = new NewSyntax()
 const newGetGreeting = newSyntax.getGreeting
 console.log(newGetGreeting())
 ```
+
+## Section 7 - Using a Third-Party Component
+
+### React Modal
+
+https://github.com/reactjs/react-modal

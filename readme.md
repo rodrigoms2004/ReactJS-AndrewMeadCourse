@@ -556,5 +556,64 @@ yarn add sass-loader@6.0.6 node-sass@5.0.0
 import './styles/styles.scss';
 ```
 
+### Architecture and Header Styles
 
+1 rem == 16 pixels
 
+Inside file *projects/indecision-app/src/styles/styles.scss*
+```
+@import './base/base';
+@import './components/header'
+```
+
+File *projects/indecision-app/src/styles/base/_base.scss*
+```
+html {
+  font-size: 62.5%; // 16 * 0.625 = 10
+}
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+}
+```
+
+File *projects/indecision-app/src/styles/components/_header.scss* 
+```
+.header {
+  background: #20222b;
+  color: white;
+  margin-bottom: 4.8rem;
+  padding: 1.6rem 0;
+}
+
+// BEM Block element modifier
+.header__title {
+  font-size: 3.2rem;
+  margin: 0;
+}
+
+.header__subtitle {
+  color: #a5afd7;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin: 0;
+}
+```
+
+Now, file *projects/indecision-app/src/components/Header.js*
+```
+import React from 'react'
+
+const Header = (props) => (
+  <div className='header'>
+  <h1 className='header__title'>{props.title}</h1>
+  {props.subtitle && <h2 className='header__subtitle'>{props.subtitle}</h2>}
+  </div>
+)
+
+Header.defaultProps = {
+  title : 'Indecision'
+}
+
+export default Header
+```

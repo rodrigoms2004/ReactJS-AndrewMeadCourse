@@ -617,3 +617,25 @@ Header.defaultProps = {
 
 export default Header
 ```
+
+### Reset that $#!*
+
+Normalize.css makes browsers render all elements more consistently and in line with modern standards. It precisely targets only the styles that need normalizing.
+
+https://necolas.github.io/normalize.css/
+
+```
+yarn add normalize.css@7.0.0
+```
+
+In file *projects/indecision-app/src/app.js* add import above styles.scss
+```
+import 'normalize.css/normalize.css';
+import './styles/styles.scss';
+```
+
+In *webpack.config.js* change regex where 's' is optional
+```
+  test: /\.s?css$/,
+```
+

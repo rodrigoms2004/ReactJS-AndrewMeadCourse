@@ -480,3 +480,81 @@ console.log(newGetGreeting())
 ### React Modal
 
 https://github.com/reactjs/react-modal
+
+
+## Section 8 - Styling React
+
+### Webpack
+
+Create file *projects/indecision-app/src/styles/styles.css*
+
+```
+* {
+  color: red;
+}
+```
+
+Install the loaders
+
+```
+yarn add style-loader@0.18.2 css-loader@0.28.4
+```
+
+In *projects/indecision-app/webpack.config.js* add a new rule
+
+```
+  module: {
+    rules: [
+      {
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/
+      }, {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  },
+
+```
+
+In *projects/indecision-app/src/app.js* add reference to the styles.css file
+
+```
+import React from 'react'
+import ReactDOM from 'react-dom'
+import IndecisionApp from './components/IndecisionApp'
+import './styles/styles.css';
+
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
+```
+
+#### SASS
+
+https://sass-lang.com/
+
+
+1. Rename file styles.css to styless.scss
+2. Add the loaders: 
+```
+yarn add sass-loader@6.0.6 node-sass@5.0.0
+```
+3. In *webpack.config.js* search for *.scss files and add the loaders
+```
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+```
+
+4. In *app.js* change the import
+```
+import './styles/styles.scss';
+```
+
+
+

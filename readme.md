@@ -643,3 +643,50 @@ In *webpack.config.js* change regex where 's' is optional
 
 
 https://sass-lang.com/documentation/modules
+
+
+### Mobile considerations
+
+In *projects/indecision-app/public/index.html* add meta to use device default width
+
+```
+<html>
+  <head>
+...
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+...
+  </head>
+```
+
+In *projects/indecision-app/src/styles/components/_add-option.scss*
+
+```
+...
+
+@media (min-width: 45rem) {
+  .add-option {
+    flex-direction: row;
+  }
+  .add-option__input {
+    margin: 0 $s-size 0 0;
+  }
+}
+```
+
+### FAVICON
+
+Picture in *projects/indecision-app/public/images/favicon.png*
+
+In *projects/indecision-app/public/index.html*
+
+```
+<html>
+  <head>
+  ...
+    <link rel="icon" type="image/png" href="./images/favicon.png">
+  </head>
+```
+
+## PART 2 - Section 9 - React-Router
+
+
